@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilos/informacoes.css">
+    <title>Dados Cadastrados</title>
+</head>
+<body>
+    <h1>Informações Cadastradas</h1>
+    <div class="campo">
+        <p><strong>Nome:</strong> <span id="nome"></span></p>
+    </div>
+    <div class="campo">
+        <p><strong>Email:</strong> <span id="email"></span></p>
+    </div>
+    <div class="campo">
+        <p><strong>Experiência:</strong> <span id="experiência"></span></p>
+    </div>
+    <div class="campo">
+        <p><strong>Lado da Aplicação:</strong> <span id="devweb"></span></p>
+    </div>
+    <div class="campo">
+        <p><strong>Senioridade:</strong> <span id="Senioridade"></span></p>
+    </div>
+    <div class="check">
+        <p><strong>Tecnologias:</strong> <span id="tecnologias"></span></p>
+    </div>
+
+    <script>
+        // Captura os parâmetros da URL
+        const params = new URLSearchParams(window.location.search);
+        // Captura todas as tecnologias selecionadas
+const tecnologiasSelecionadas = params.getAll('tecnologias');
+
+// Captura o nome e o sobrenome
+const nome = params.get('nome') || '';
+const sobrenome = params.get('Sobrenome') || '';
+
+// Combina o nome e o sobrenome
+document.getElementById('nome').textContent = nome && sobrenome 
+    ? `${nome} ${sobrenome}` 
+    : 'Não informado';
+
+        // Preenche os campos com os valores enviados
+        document.getElementById('email').textContent = params.get('email') || 'Não informado';
+        document.getElementById('devweb').textContent = params.get('devweb') || 'Não informado';
+        document.getElementById('Senioridade').textContent = params.get('Senioridade') || 'Não informado';
+       document.getElementById('tecnologias').textContent = tecnologiasSelecionadas.length > 0 ? tecnologiasSelecionadas.join(', ') : 'Nenhuma tecnologia selecionada';
+        document.getElementById('experiência').textContent = params.get('experiência') || 'Não informado';
+    </script>
+</body>
+</html>
